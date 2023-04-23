@@ -166,7 +166,7 @@ $(document).ready(function () {
             "color": "#fff"
         });
         ventanaEmergente.append(tarjetaTexto);
-        
+
         // Agregar la imagen ampliada a la ventana emergente
         var imagenAmpliada = $("<img>");
         imagenAmpliada.attr("src", $(this).find("img").attr("src"));
@@ -199,4 +199,88 @@ $(document).ready(function () {
         $("body").append(fondoNegro);
         fondoNegro.append(ventanaEmergente);
     });
+});
+
+//////////////////////////////////////////////////////////////////
+
+$(document).ready(function () {
+
+    // Crear el carrusel de imágenes
+    var carrusel = $("#carrusel2");
+    carrusel.css({
+        "display": "none",
+    });
+
+    $("#sobrenosotros").click(function () {
+        $("body").find(".fondo-negro").remove();
+        $("body").find(".ventana-emergente").remove();
+
+        // Crear el fondo negro
+        var fondoNegro = $("<div></div>");
+        fondoNegro.css({
+            "position": "fixed",
+            "top": 0,
+            "left": 0,
+            "width": "100%",
+            "height": "100%",
+            "z-index": "999"
+        });
+
+        // Crear la ventana emergente
+        var ventanaEmergente = $("<div></div>");
+        ventanaEmergente.css({
+            "position": "absolute",
+            "top": "50%",
+            "left": "50%",
+            "transform": "translate(-50%,-50%)",
+            "background-color": "#000",
+            "padding": "20px",
+            "z-index": "1000",
+            "width": "70%",
+            "height": "70%"
+        });
+
+        var tituloVentana = $("<div></div>");
+        tituloVentana.html("<h1>Nimrodel Pub Restaurant</h1>");
+        tituloVentana.css({
+            "text-align": "center",
+            "color": "#fff",
+            "margin-bottom": "20px",
+            "font-style": "italic",
+            "font-size": "30px"
+        });
+
+        ventanaEmergente.append(tituloVentana);
+
+        // Agregar el botón de cerrar
+        var botonCerrar = $("<button>x</button>");
+        botonCerrar.css({
+            "position": "absolute",
+            "top": "5px",
+            "left": "5px",
+            "font-size": "24px",
+            "color": "#fff",
+            "background-color": "transparent",
+            "border": "none",
+        });
+        botonCerrar.click(function () {
+            fondoNegro.remove();
+            ventanaEmergente.remove();
+            carrusel.hide();
+        });
+        ventanaEmergente.append(botonCerrar);
+
+        // Agregar el carrusel
+        ventanaEmergente.append(carrusel);
+        carrusel.css({
+            "display": "block",
+            "margin-top": "20px",
+        });
+
+        // Agregar el fondo negro y la ventana emergente al body
+        $("body").append(fondoNegro);
+        fondoNegro.append(ventanaEmergente);
+
+    });
+
 });
